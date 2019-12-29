@@ -1,0 +1,76 @@
+[
+  {
+    "id": 1,
+    "title": "商品",
+    "icon": "el-icon-s-shop",
+    "children": [
+      {
+        "id": 11,
+        "title": "商品列表",
+        "icon": "el-icon-circle-check",
+        "path": "product"
+      },
+      {
+        "id": 12,
+        "title": "添加商品",
+        "icon": "el-icon-circle-check",
+        "path": "addProduct"
+      },
+      {
+        "id": 13,
+        "title": "商品分类",
+        "icon": "el-icon-circle-check",
+        "path": "productCate"
+      },
+      {
+        "id": 14,
+        "title": "商品类型",
+        "icon": "el-icon-circle-check",
+        "path": "productAttr"
+      },
+      {
+        "id": 15,
+        "title": "品牌管理",
+        "icon": "el-icon-circle-check",
+        "path": "brand"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "订单",
+    "icon": "el-icon-s-order",
+    "children": [
+      {
+        "id": 21,
+        "title": "订单列表",
+        "icon": "el-icon-circle-check",
+        "path": "order"
+      },
+      {
+        "id": 22,
+        "title": "未付款订单",
+        "icon": "el-icon-circle-check",
+        "path": "nonPayList"
+      },
+      {
+        "id": 23,
+        "title": "未发货订单",
+        "icon": "el-icon-circle-check",
+        "path": "unShippedList"
+      },
+      {
+        "id": 24,
+        "title": "未签收订单",
+        "icon": "el-icon-circle-check",
+        "path": "unReceiveList"
+      },
+      {
+        "id": 25,
+        "title": "已完成订单",
+        "icon": "el-icon-circle-check",
+        "path": "completeList"
+      }
+    ]
+  }
+]
