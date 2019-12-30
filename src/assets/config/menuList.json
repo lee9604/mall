@@ -14,7 +14,7 @@
         "id": 12,
         "title": "添加商品",
         "icon": "el-icon-circle-check",
-        "path": "addProduct"
+        "path": "productBaseInfo"
       },
       {
         "id": 13,

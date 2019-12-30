@@ -1,25 +1,25 @@
 <template>
-  <el-card class="box-card">
-    <div class="form-box">
-      <div style="margin: 0 auto;width: 140px;height: auto">
-        <img src="../../assets/images/login/logo.png" alt="" width="140px" height="auto">
-      </div>
-      <el-form ref="loginFormRef" size="mini" :rules="loginValidate" :model="loginForm">
-        <el-form-item prop="username">
-          <el-input v-model="loginForm.username" placeholder="Username" clearable/>
-        </el-form-item>
-        <el-form-item prop="password">
-          <el-input v-model="loginForm.password" placeholder="Password" show-password/>
-        </el-form-item>
-        <el-form-item>
-          <div class="button-container">
-            <el-button round class="form-button" @click="login()">登录</el-button>
-            <el-button round class="form-button" @click="register()">注册</el-button>
-          </div>
-        </el-form-item>
-      </el-form>
-    </div>
-  </el-card>
+    <el-card class="box-card">
+        <div class="form-box">
+            <div style="margin: 0 auto;width: 140px;height: auto">
+                <img src="../../assets/images/login/logo.png" alt="" width="140px" height="auto">
+            </div>
+            <el-form ref="loginFormRef" size="mini" :rules="loginValidate" :model="loginForm">
+                <el-form-item prop="username">
+                    <el-input v-model="loginForm.username" placeholder="Username" clearable/>
+                </el-form-item>
+                <el-form-item prop="password">
+                    <el-input v-model="loginForm.password" placeholder="Password" show-password/>
+                </el-form-item>
+                <el-form-item>
+                    <div class="button-container">
+                        <el-button round class="form-button" @click="login()">登录</el-button>
+                        <el-button round class="form-button" @click="register()">注册</el-button>
+                    </div>
+                </el-form-item>
+            </el-form>
+        </div>
+    </el-card>
 </template>
 
 <script>
@@ -69,41 +69,41 @@ export default {
 <style lang="scss" scoped>
 
 .box-card {
-  width: 400px;
-  height: 400px;
-  background-color: #202345;
-  margin: 0 auto;
-  border: #202345;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+    width: 400px;
+    height: 400px;
+    background-color: #202345;
+    margin: 0 auto;
+    border: #202345;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /deep/ .el-card__body {
-  padding-top: 60px;
+    padding-top: 60px;
 }
 
 .form-box {
-  width: 260px;
-  margin: 0 auto
+    width: 260px;
+    margin: 0 auto
 
 }
 
 /deep/ input.el-input__inner {
-  background: #2a2f61;
-  border: #2a2f61;
-  color: aliceblue;
+    background: #2a2f61;
+    border: #2a2f61;
+    color: aliceblue;
 }
 
 .button-container {
-  width: 210px;
-  margin: 0 auto;
+    width: 210px;
+    margin: 0 auto;
 }
 
 .form-button {
-  width: 100px;
-  color: white;
-  border: #df2f76;
-  background-color: #df2f76;
+    width: 100px;
+    color: white;
+    border: #df2f76;
+    background-color: #df2f76;
 }
 </style>

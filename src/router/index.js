@@ -6,6 +6,11 @@ import Index from '../components/login/index'
 import Home from '../components/Home'
 import ProductList from '../components/pms/productList'
 import AddProduct from '../components/pms/addProduct'
+import ProductBaseInfo from '../components/pms/productBaseInfo'
+import ProductOtherAttr from '../components/pms/productOtherAttr'
+
+// 测试
+import Table from '../components/demo/table'
 
 Vue.use(VueRouter)
 
@@ -15,7 +20,14 @@ const routes = [
     component: Home,
     children: [
       { path: '/product', component: ProductList },
-      { path: '/addProduct', component: AddProduct }
+      {
+        path: '/addProduct',
+        component: AddProduct,
+        children: [
+          { path: '/productBaseInfo', component: ProductBaseInfo },
+          { path: '/productOtherAttr', component: ProductOtherAttr }
+        ]
+      }
     ]
   },
   {
@@ -25,7 +37,9 @@ const routes = [
       { path: '/login', name: 'login', component: Login },
       { path: '/register', name: 'register', component: Register }
     ]
-  }
+  },
+  // 测试路由
+  { path: '/table', component: Table }
 ]
 
 const router = new VueRouter({
