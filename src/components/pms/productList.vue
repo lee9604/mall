@@ -138,7 +138,8 @@
             查看
           </el-button>
           <el-button
-                  size="mini">
+                  size="mini"
+                  @click="handleUpdateProduct(scope.row)">
             编辑
           </el-button>
           <el-button
@@ -409,6 +410,10 @@ export default {
       this.listQuery.pageSize = val
       console.log(this.listQuery.pageSize)
       this.getList()
+    },
+    // 编辑/更新商品信息
+    handleUpdateProduct (row) {
+      this.$router.push({ path: 'product/productBaseInfo', query: { id: row.id } })
     }
   }
 }

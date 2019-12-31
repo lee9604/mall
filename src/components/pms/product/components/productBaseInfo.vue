@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="value" size="small" label-position="left" label-width="120px">
+  <el-form ref="baseInfoForm" :model="value" :rules="rules" size="small" label-position="left" label-width="120px">
     <el-form-item label="商品分类" prop="productCategoryId">
       <el-cascader
               v-model="selectProductCateValue"
@@ -19,34 +19,34 @@
       </el-select>
     </el-form-item>
     <el-form-item label="商品名称" prop="name">
-      <el-input/>
+      <el-input v-model="value.name"/>
     </el-form-item>
     <el-form-item label="商品介绍" prop="desc">
-      <el-input type="textarea" placeholder="请在此输入内容"/>
+      <el-input v-model="value.desc" type="textarea" placeholder="请在此输入内容"/>
     </el-form-item>
     <el-form-item label="商品价格" prop="price">
-      <el-input/>
+      <el-input v-model="value.price"/>
     </el-form-item>
     <el-form-item label="市场价格" prop="originalPrice">
-      <el-input/>
+      <el-input v-model="value.originalPrice"/>
     </el-form-item>
     <el-form-item label="商品库存" prop="stock">
-      <el-input/>
+      <el-input v-model="value.stock"/>
     </el-form-item>
     <el-form-item label="计量单位" prop="unit">
-      <el-input/>
+      <el-input v-model="value.unit"/>
     </el-form-item>
     <el-form-item label="商品重量" prop="weight">
-      <el-input/>
+      <el-input v-model="value.weight"/>
     </el-form-item>
     <el-form-item label="商品排序" prop="sort">
       <el-slider
-              v-model="sort"
+              v-model="value.sort"
               show-input>
       </el-slider>
     </el-form-item>
     <el-form-item style="text-align: center">
-      <el-button type="primary" size="medium" @click="handleNext('productOtherAttr')">下一步，填写商品其他属性</el-button>
+      <el-button type="primary" size="medium" @click="handleNext()">下一步，填写商品其他属性</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -54,19 +54,26 @@
 <script>
 export default {
   name: 'productBaseInfo',
+  props: {
+    // 默认value接收父组件的v-model传过来的值，接收productParam
+    value: Object
+  },
   data () {
     return {
-      value: null,
       selectProductCateValue: [],
       productCateOptions: [],
       brandOptions: [],
-      sort: ''
+      // 表单校验规则
+      rules: {
+        productCategoryId: [{ required: true, message: '请选择商品分类', trigger: 'blur' }],
+        brandId: [{ required: true, message: '请选择品牌类型', trigger: 'blur' }],
+        name: [{ required: true, message: '请输入商品名称', trigger: 'blur' }]
+      }
     }
   },
   created () {
     this.getProductCateList()
     this.getBrand()
-    this.getProductById()
   },
   methods: {
     // 获取商品分类
@@ -90,16 +97,15 @@ export default {
         this.brandOptions.push({ label: item.name, value: item.id })
       }
     },
-    // TODO 下一步操作
-    handleNext (pathName) {
-      const value = this.value
-      this.$router.push({ name: pathName, params: { value } })
-    },
-    // 根据id获取商品信息
-    async getProductById () {
-      if (this.$route.query.id == null) return
-      let { data: res } = await this.$http.get('/product/list', { params: { id: this.$route.query.id } })
-      this.value = res
+    // 下一步
+    handleNext () {
+      this.$refs.baseInfoForm.validate(valid => {
+        if (!valid) {
+          this.$message.error('请按照要求进行填写')
+          return false
+        }
+        this.$emit('nextStep')
+      })
     }
   }
 }
