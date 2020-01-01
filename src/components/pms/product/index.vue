@@ -6,14 +6,14 @@
       <el-step title="查看商品信息"/>
     </el-steps>
     <product-base-info
-            v-show="showStatus[0]"
-            v-model="productParam"
-            @nextStep="nextStep"/>
+      v-show="showStatus[0]"
+      v-model="productParam"
+      @nextStep="nextStep"/>
     <product-other-attr
-            v-show="showStatus[1]"
-            v-model="productParam"
-            @prevStep="prevStep"
-            @finishCommit="finishCommit"/>
+      v-show="showStatus[1]"
+      v-model="productParam"
+      @prevStep="prevStep"
+      @finishCommit="finishCommit"/>
   </el-card>
 </template>
 
@@ -60,12 +60,27 @@ export default {
       this.active++
       this.showStatus[this.active] = true
     },
-    // TODO 完成提交，需要判断是否是更新操作
+    // 完成提交动作
     finishCommit () {
-      this.$confirm('确定要提交表单？','警告', {
+      const isEdit = this.isEdit
+      this.$confirm('确定要提交表单？', '警告', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
+      }).then(() => {
+        if (isEdit) {
+          this.$http.put('/updateProduct', { id: this.$route.query.id, productParam: this.productParam })
+            .then(ret => {
+              this.$message.success('修改成功')
+              // TODO 添加跳转成功信息
+            })
+        } else {
+          this.$http.put('/addProduct', { id: this.$route.query.id, productParam: this.productParam })
+            .then(ret => {
+              this.$message.success('添加成功')
+              // TODO 添加跳转成功信息
+            })
+        }
       })
     }
   }
