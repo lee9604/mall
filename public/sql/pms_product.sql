@@ -3,7 +3,7 @@ create table pms_product
    id                   bigint not null auto_increment,
    brand_id             bigint comment '品牌id',
    product_category_id  bigint comment '品牌分类id',
-   feight_template_id   bigint comment '运费模版id',
+   -- feight_template_id   bigint comment '运费模版id',
    product_attribute_category_id bigint comment '商品属性分类id',
    name                 varchar(64) not null comment '商品名称',
    pic                  varchar(255) comment '图片',

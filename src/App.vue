@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <router-view/>
+<!--    <router-view/>-->
+    <buttton @click="getBrand">test</buttton>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'app'
+  name: 'app',
+  methods: {
+    async getBrand () {
+      let ret = await this.$http.get('/pmsProductBrand/list')
+      console.log(ret)
+    }
+  }
 }
 </script>
 

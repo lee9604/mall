@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import ProductBaseInfo from './components/productBaseInfo'
-import ProductOtherAttr from './components/productOtherAttr'
+import ProductBaseInfo from './productBaseInfo'
+import ProductOtherAttr from './productOtherAttr'
 
 const defaultProductParam = {}
 export default {

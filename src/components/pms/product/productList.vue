@@ -182,7 +182,7 @@ export default {
   name: 'productList',
   data () {
     return {
-      listQuery: defaultListQuery,
+      listQuery: Object.assign({}, defaultListQuery),
       selectProductCateValue: null,
       productCateOptions: [],
       brandOptions: [],
@@ -255,7 +255,7 @@ export default {
     },
     // 获取品牌列表
     async getBrand () {
-      let { data: res } = await this.$http.get('/brand/list')
+      let { data: res } = await this.$http.get('/pmsProductBrand/list')
       for (const item of res.list) {
         this.brandOptions.push({ label: item.name, value: item.id })
       }

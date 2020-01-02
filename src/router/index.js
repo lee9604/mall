@@ -4,10 +4,7 @@ import Login from '../components/login/login'
 import Register from '../components/login/register'
 import Index from '../components/login/index'
 import Home from '../components/Home'
-import ProductList from '../components/pms/productList'
-import AddProduct from '../components/pms/addProduct'
-import ProductBaseInfo from '../components/pms/productBaseInfo'
-import ProductOtherAttr from '../components/pms/productOtherAttr'
+import productBaseInfo from '../components/pms/product/productBaseInfo'
 
 // 测试
 import Table from '../components/demo/table'
@@ -15,21 +12,8 @@ import Table from '../components/demo/table'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/home',
-    component: Home,
-    children: [
-      { path: '/product', component: ProductList },
-      {
-        path: '/addProduct',
-        component: AddProduct,
-        children: [
-          { path: '/productBaseInfo', component: ProductBaseInfo },
-          { path: '/productOtherAttr', component: ProductOtherAttr }
-        ]
-      }
-    ]
-  },
+
+  // TODO 登陆模块路由，需要进行重新设计路由逻辑
   {
     path: '/',
     component: Index,
@@ -38,6 +22,34 @@ const routes = [
       { path: '/register', name: 'register', component: Register }
     ]
   },
+  // 商品模块路由
+  {
+    path: '/pms',
+    component: Home,
+    // 商品列表作为首页
+    redirect: '/pms/product',
+    name: 'pms',
+    children: [
+      // {
+      //   path: 'product',
+      //   name: 'product',
+      //   // 使用工厂函数，import()函数返回一个promise对象，实现路由懒加载
+      //   component: () => import('src/components/pms/product/productList.vue')
+      // },
+      {
+        path: 'updateProduct',
+        name: 'updateProduct',
+        // component: () => import('src/components/pms/product/productBaseInfo.vue')
+        component: productBaseInfo
+      }
+      // {
+      //   path: 'updateProductAttr',
+      //   name: 'updateProductAttr',
+      //   component: () => import('src/components/pms/product/productOtherAttr.vue')
+      // }
+    ]
+  },
+
   // 测试路由
   { path: '/table', component: Table }
 ]
